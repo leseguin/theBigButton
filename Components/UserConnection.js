@@ -13,15 +13,9 @@ import * as RootNavigation from './../Navigation/RootNavigation'
 
 //A modifier en ajou
 function SignInWithFacebookControler(){
-  SignInWithFacebook
+  SignInWithFacebook()
   firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      navigationRef.current.getRootState()
-      console.log("SignInWithFacebookControler user " + user + "  NavigationRef " + navigationRef.current.getRootState())
-      RootNavigation.navigate('BigButton');
-    } else {
-      // No user is signed in.
-    }
+    console.log("UserConnection SignInWithFacebookControler user " + user)
   });
 }
 

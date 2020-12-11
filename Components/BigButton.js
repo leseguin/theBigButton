@@ -1,30 +1,44 @@
 //components/BigButton.js
 
-import React from 'react'
+import React, {useContext} from 'react'
 import {Button, Text, View, Alert, StyleSheet } from 'react-native'
+import { AuthContext } from '../Navigation/Navigation'
+import firebase from './../utils/firebase'
 //import Button from 'react-native-button'
 
-export default class BigButton extends React.Component {
 
-  onButtonPressed(){
+
+
+export default function BigButton() {
+
+
+  const user = useContext(AuthContext)
+
+  async function logOut() {
+    try {
+      await firebase.auth().signOut()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  function onButtonPressed(){
     Alert.alert('Button pressed')
   }
 
-  render(){
     return(
       <View style={styles.main_container} >
         <View style={styles.header}>
-          <Button style={styles.header_button} mode="contained" title="déconnection" accessibilityLabel='déconnection'/>
+          <Button style={styles.header_button} onPress={logOut} mode="contained" title="déconnection" accessibilityLabel='déconnection'/>
         </View>
         <View style={styles.central}>
           <Button style={styles.button}
             title="Press me"
-            onPress={this.onButtonPressed }
+            onPress={onButtonPressed }
           />
         </View>
       </View>
     )
-  }
 }
 
 const styles = StyleSheet.create({
