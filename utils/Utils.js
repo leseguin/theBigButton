@@ -1,11 +1,5 @@
 //import * as firebase from 'firebase';
 
-// Optionally import the services that you want to use
-//import "firebase/auth";
-//import "firebase/database";
-//import "firebase/firestore";
-//import "firebase/functions";
-//import "firebase/storage";
 
 import firebase from './firebase'
 
@@ -20,12 +14,12 @@ export const firebaseConfig = {
     measurementId: "G-4CPJ0V5MHF"
   };
 
-  export const firestoreDB = firebase.firestore();
+export const firestoreDB = firebase.firestore();
 
-  export const stylesLib = {
-    mainThemeColor: '#50C9CF',
-    mainTextColor: '#ffe2ff'
-  }
+export const stylesLib = {
+  mainThemeColor: '#50C9CF',
+  mainTextColor: '#ffe2ff'
+}
 
 //firebase.initializeApp(Expo.Constants.manifest.extra.firebase);
 

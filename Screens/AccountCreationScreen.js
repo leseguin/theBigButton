@@ -4,9 +4,8 @@ import React, { useState } from 'react'
 import {View, Image, StyleSheet, TextInput, Button, Alert, Text, TouchableOpacity} from 'react-native'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
-import PersonnalTextInput from './PersonalTextInput'
-import PersonnalButton from './PersonnalButton'
-import Separator from './Separator'
+import PersonnalTextInput from './../Components/PersonalTextInput'
+import PersonnalButton from './../Components/PersonnalButton'
 import {CreateUserWithEmailAndPassword} from './../utils/auth.js'
 
 
@@ -14,7 +13,7 @@ import {CreateUserWithEmailAndPassword} from './../utils/auth.js'
 
 
 
-function AccountCreation(){
+function AccountCreationScreen(){
 
 
 
@@ -69,4 +68,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AccountCreation
+export default AccountCreationScreen

@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import {View, Image, StyleSheet, Text, TextInput, Button, Alert, KeyboardAvoidingView, TouchableOpacity} from 'react-native'
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
-import PersonnalTextInput from './PersonalTextInput'
-import PersonnalButton from './PersonnalButton'
-import BigButton from './BigButton'
+import PersonnalTextInput from './../Components/PersonalTextInput'
+import PersonnalButton from './../Components/PersonnalButton'
 
 import firebase from './../utils/firebase'
 import { navigationRef } from './../Navigation/RootNavigation'
@@ -21,16 +20,10 @@ function SignInWithFacebookControler(){
   });
 }
 
-
-
-
-
-
-function UserConnection ({ navigation }) {
+function UserConnectionScreen ({ navigation }) {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
 
   function SignInWithEmailAndPasswordControler(){
     SignInWithEmailAndPassword(email, password)
@@ -67,7 +60,7 @@ function UserConnection ({ navigation }) {
       </KeyboardAwareScrollView>
     )
 }
-export default UserConnection;
+export default UserConnectionScreen;
 
 const styles = StyleSheet.create({
   main_container: {
@@ -90,20 +83,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50
   },
-  button_style:{
-       borderRadius: 30,
-       width: 200,
-       height: 60,
-       padding: 10,
-       justifyContent: 'center',
-       alignItems: 'center',
-       backgroundColor: stylesLib.mainThemeColor
-  },
-  button_text:{
-      color: '#ffe2ff',
-      fontSize: 14,
-      textAlign: 'center'
-    },
   buttons_container:{
     flex:6,
     alignItems:'center',

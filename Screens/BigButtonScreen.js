@@ -7,14 +7,14 @@ import firebase from './../utils/firebase'
 import {stylesLib} from './../utils/Utils'
 
 
-import PersonnalButton from './PersonnalButton'
+import PersonnalButton from './../Components/PersonnalButton'
 
 //import Button from 'react-native-button'
 
 
 
 
-export default function BigButton() {
+export default function BigButtonScreen() {
 
 
   const user = useContext(AuthContext)

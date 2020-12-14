@@ -12,7 +12,7 @@ import firebase from './../utils/firebase'
 
 import SignInStack from './SignInStack'
 import SignOutStack from './SignOutStack'
-import SplashScreen from '../Components/SplashScreen'
+import SplashScreen from '../Screens/SplashScreen'
 
 const Stack = createStackNavigator();
 

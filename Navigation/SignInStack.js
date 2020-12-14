@@ -6,10 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { navigationRef } from './RootNavigation'
 
-import BigButton from '../Components/BigButton'
-import UserConnection from '../Components/UserConnection'
-import AccountCreation from '../Components/AccountCreation'
-import SplashScreen from '../Components/SplashScreen'
+import BigButtonScreen from '../Screens/BigButtonScreen'
 
 const Stack = createStackNavigator();
 
@@ -19,7 +16,7 @@ export default function SignInStack(){
       <NavigationContainer ref={navigationRef}>
           <Stack.Navigator>
           <>
-            <Stack.Screen name="BigButton" component={BigButton} options={{ title: 'Le gros bouton' }}/>
+            <Stack.Screen name="BigButton" component={BigButtonScreen} options={{ title: 'Le gros bouton' }}/>
           </>
           </Stack.Navigator>
       </NavigationContainer>

@@ -9,10 +9,8 @@ import { navigationRef } from './RootNavigation'
 
 import firebase from './../utils/firebase'
 
-import BigButton from '../Components/BigButton'
-import UserConnection from '../Components/UserConnection'
-import AccountCreation from '../Components/AccountCreation'
-import SplashScreen from '../Components/SplashScreen'
+import UserConnectionScreen from '../Screens/UserConnectionScreen'
+import AccountCreationScreen from '../Screens/AccountCreationScreen'
 
 const Stack = createStackNavigator();
 
@@ -22,8 +20,8 @@ export default function SignOutStack(){
     <NavigationContainer ref={navigationRef}>
           <Stack.Navigator>
           <>
-            <Stack.Screen name="UserConnection" component={UserConnection} options={{ title: 'Connexion' }}/>
-            <Stack.Screen name="AccountCreation" component={AccountCreation} options={{ title: 'Création de compte' }}/>
+            <Stack.Screen name="UserConnection" component={UserConnectionScreen} options={{ title: 'Connexion' }}/>
+            <Stack.Screen name="AccountCreation" component={AccountCreationScreen} options={{ title: 'Création de compte' }}/>
           </>
           </Stack.Navigator>
     </NavigationContainer>

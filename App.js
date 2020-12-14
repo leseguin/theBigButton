@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import BigButton from './Components/BigButton'
 import Navigation from './Navigation/Navigation'
 
 // Set an initializing state whilst Firebase connects
