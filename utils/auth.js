@@ -3,6 +3,8 @@ import firebase from './firebase'
 import {Alert} from 'react-native'
 
 import * as Facebook from 'expo-facebook';
+
+import {firestoreDB} from './Utils'
 //import firebase from './../utils/firebase'
 
 export async function SignInWithFacebook() {
@@ -27,6 +29,16 @@ export async function SignInWithFacebook() {
          const facebookProfileData = await firebase.auth().signInWithCredential(credential);  // Sign in with Facebook credential
          // Do something with Facebook profile data
          // OR you have subscribed to auth state change, authStateChange handler will process the profile data
+         const profile = facebookProfileData.additionalUserInfo.profile
+         const pseudo = profile.first_name + profile.last_name
+         const currentUser = firebase.auth().currentUser;
+         firestoreDB.collection("users")
+           .doc(currentUser.uid)
+           .set({
+             email: currentUser.email,
+             pseudo: pseudo,
+           });
+
          return Promise.resolve({type: 'success'});
        }
        case 'cancel': {
@@ -51,16 +63,21 @@ export const SignInWithEmailAndPassword = async (email, password) => {
     });
 }
 
-export const CreateUserWithEmailAndPassword = async (email, password) => {
+
+
+export const CreateUserWithEmailAndPassword = async (email, password, pseudo) => {
   console.log("CreateUserWithEmailAndPassword EMAIL :" + email)
   console.log("CreateUserWithEmailAndPassword PASSWORD :" + password)
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((user) => {
-      return Promise.resolve({type: 'success'});
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    return Promise.reject({type: 'cancel'});
-  });
+  try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const currentUser = firebase.auth().currentUser;
+      firestoreDB.collection("users")
+        .doc(currentUser.uid)
+        .set({
+          email: currentUser.email,
+          pseudo: pseudo,
+        });
+    } catch (err) {
+      Alert.alert("There is something wrong!!!!", err.message);
+    }
 }

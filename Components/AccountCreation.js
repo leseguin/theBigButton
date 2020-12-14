@@ -25,7 +25,7 @@ function AccountCreation(){
  const  validateAccountCreation = () => {
    console.log("_validateAccountCreation EMAIL " + email)
    console.log("_validateAccountCreation PASSWORD " + password);
-   CreateUserWithEmailAndPassword(email, password)
+   CreateUserWithEmailAndPassword(email, password, pseudo)
  }
 
 

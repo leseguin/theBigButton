@@ -6,6 +6,7 @@ import { AuthContext } from '../Navigation/Navigation'
 import firebase from './../utils/firebase'
 import {stylesLib} from './../utils/Utils'
 
+
 import PersonnalButton from './PersonnalButton'
 
 //import Button from 'react-native-button'
@@ -18,6 +19,12 @@ export default function BigButton() {
 
   const user = useContext(AuthContext)
 
+
+  const getPseudo = () => {
+    const currentUser = firebase.auth().currentUser;
+    return <Text>hello</Text>
+  }
+
   async function logOut() {
     try {
       await firebase.auth().signOut()
@@ -25,7 +32,6 @@ export default function BigButton() {
       console.error(e)
     }
   }
-
   function onButtonPressed(){
     Alert.alert('Button pressed')
   }
@@ -36,6 +42,7 @@ export default function BigButton() {
             <PersonnalButton text='Déconnection' onPress={logOut} buttonSize="x_small" />
         </View>
         <View style={styles.central}>
+          {getPseudo()}
           <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="large" />
           <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="medium" />
           <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="small" />

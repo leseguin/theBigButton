@@ -7,6 +7,7 @@
 //import "firebase/functions";
 //import "firebase/storage";
 
+import firebase from './firebase'
 
 
 export const firebaseConfig = {
@@ -18,6 +19,8 @@ export const firebaseConfig = {
     appId: "1:1015636506610:web:0a640a0ea725bcfe3d1d6b",
     measurementId: "G-4CPJ0V5MHF"
   };
+
+  export const firestoreDB = firebase.firestore();
 
   export const stylesLib = {
     mainThemeColor: '#50C9CF',
