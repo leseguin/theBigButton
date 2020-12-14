@@ -9,7 +9,7 @@
 
 
 
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyBdTcaFPZOizwT72_QaHDmMhcCj3zsVEJc",
     authDomain: "thebigbutton-68c7f.firebaseapp.com",
     projectId: "thebigbutton-68c7f",
@@ -18,6 +18,11 @@ const firebaseConfig = {
     appId: "1:1015636506610:web:0a640a0ea725bcfe3d1d6b",
     measurementId: "G-4CPJ0V5MHF"
   };
+
+  export const stylesLib = {
+    mainThemeColor: '#50C9CF',
+    mainTextColor: '#ffe2ff'
+  }
 
 //firebase.initializeApp(Expo.Constants.manifest.extra.firebase);
 

@@ -12,7 +12,7 @@ export default class BigButton extends React.Component {
     return(
       <View style={styles.main_container} >
         <View style={styles.central}>
-          <Text> UNE Super appli </Text>
+          <Text> une Super appli </Text>
         </View>
       </View>
     )

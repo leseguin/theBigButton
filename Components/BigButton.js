@@ -1,9 +1,13 @@
 //components/BigButton.js
 
 import React, {useContext} from 'react'
-import {Button, Text, View, Alert, StyleSheet, TouchableOpacity } from 'react-native'
+import {Button, Text, View, Alert, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native'
 import { AuthContext } from '../Navigation/Navigation'
 import firebase from './../utils/firebase'
+import {stylesLib} from './../utils/Utils'
+
+import PersonnalButton from './PersonnalButton'
+
 //import Button from 'react-native-button'
 
 
@@ -29,16 +33,12 @@ export default function BigButton() {
     return(
       <View style={styles.main_container} >
         <View style={styles.header}>
-          <TouchableOpacity style={styles.header_button} onPress={logOut} accessibilityLabel='déconnection'>
-            <Text style={styles.header_button_text}>Déconnection</Text>
-            </TouchableOpacity>
+            <PersonnalButton text='Déconnection' onPress={logOut} buttonSize="x_small" />
         </View>
         <View style={styles.central}>
-          <TouchableOpacity style={styles.central_button}
-            title="Press me"
-            onPress={onButtonPressed}>
-            <Text style={styles.central_button_text}>Envoyer</Text>
-          </TouchableOpacity>
+          <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="large" />
+          <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="medium" />
+          <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="small" />
         </View>
       </View>
     )
@@ -47,21 +47,6 @@ export default function BigButton() {
 const styles = StyleSheet.create({
   main_container:{
     flex:1,
-  },
-  central_button:{
-     flexDirection: 'row',
-     borderRadius: 30,
-     marginTop: 10,
-     marginBottom: 10,
-     width: 160,
-     height: 60,
-     justifyContent: 'center',
-     alignItems: 'center',
-     backgroundColor: '#6AE2E8'
-  },
-  central_button_text:{
-    color: '#ffe2ff',
-    fontSize: 24,
   },
   header:{
     flex: 2,
@@ -75,7 +60,7 @@ const styles = StyleSheet.create({
      marginRight:5,
      justifyContent: 'center',
      alignItems: 'center',
-     backgroundColor: '#6AE2E8'
+     backgroundColor: stylesLib.mainThemeColor
   },
   header_button_text:{
     color: '#ffe2ff',

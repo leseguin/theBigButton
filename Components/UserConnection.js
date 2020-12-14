@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import {View, Image, StyleSheet, TextInput, Button, Alert, KeyboardAvoidingView} from 'react-native'
+import {View, Image, StyleSheet, Text, TextInput, Button, Alert, KeyboardAvoidingView, TouchableOpacity} from 'react-native'
 
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import PersonnalTextInput from './PersonalTextInput'
+import PersonnalButton from './PersonnalButton'
 import BigButton from './BigButton'
 
 import firebase from './../utils/firebase'
 import { navigationRef } from './../Navigation/RootNavigation'
 
-import SignInWithFacebook from './../utils/auth.js'
+import {SignInWithFacebook, SignInWithEmailAndPassword} from './../utils/auth.js'
 import * as RootNavigation from './../Navigation/RootNavigation'
 
-//A modifier en ajou
+import {stylesLib} from './../utils/Utils'
+
 function SignInWithFacebookControler(){
   SignInWithFacebook()
   firebase.auth().onAuthStateChanged(function(user) {
@@ -22,8 +24,21 @@ function SignInWithFacebookControler(){
 
 
 
+
+
 function UserConnection ({ navigation }) {
-  const [text, setText] = useState('');
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+
+  function SignInWithEmailAndPasswordControler(){
+    SignInWithEmailAndPassword(email, password)
+    firebase.auth().onAuthStateChanged(function(user) {
+      console.log("UserConnection SignInWithFacebookControler user " + user)
+    });
+  }
+
     return(
       <KeyboardAwareScrollView contentContainerStyle={{flex:1}}>
         <View style={styles.main_container}>
@@ -35,24 +50,16 @@ function UserConnection ({ navigation }) {
           </View>
 
           <View style={styles.textinput_container}>
-            <PersonnalTextInput placeholder="Donner votre e-mail"/>
-            <PersonnalTextInput placeholder="Donner votre mot de passe"/>
+            <PersonnalTextInput setText={setEmail} text={email} placeholder="Donner votre e-mail"/>
+            <PersonnalTextInput setText={setPassword} text={password} secureTextEntry={true} placeholder="Donner votre mot de passe"/>
           </View>
 
-          <View style={styles.button_container}>
-            <Button
-              style={styles.button_style}
-              title="Se connecter avec Facebook"
-              onPress={SignInWithFacebookControler}
-            />
-
-            <View style={{height:30}}/>
-
-            <Button
-              style={styles.button_style}
-              title="Créer un compte"
-              onPress={() => navigation.navigate('AccountCreation')}
-            />
+          <View style={styles.buttons_container}>
+            <PersonnalButton buttonSize="small" text="Se connecter" onPress={SignInWithEmailAndPasswordControler}/>
+            <View style={{height:15}}/>
+            <PersonnalButton buttonSize="small" text="Se connecter avec Facebook" onPress={SignInWithFacebookControler}/>
+            <View style={{height:15}}/>
+            <PersonnalButton buttonSize="x_small" text="Créer un compte" onPress={() => navigation.navigate('AccountCreation')}/>
           </View>
 
         </View>
@@ -84,6 +91,22 @@ const styles = StyleSheet.create({
     height: 50
   },
   button_style:{
-    padding: 50
+       borderRadius: 30,
+       width: 200,
+       height: 60,
+       padding: 10,
+       justifyContent: 'center',
+       alignItems: 'center',
+       backgroundColor: stylesLib.mainThemeColor
+  },
+  button_text:{
+      color: '#ffe2ff',
+      fontSize: 14,
+      textAlign: 'center'
+    },
+  buttons_container:{
+    flex:6,
+    alignItems:'center',
+    justifyContent:'center'
   }
 })
