@@ -35,18 +35,15 @@ function AccountCreationScreen(){
       <View style={styles.main_container}>
 
           <View>
-            <Text> Donner un pseudo </Text>
-            <PersonnalTextInput setText={setPseudo} text={pseudo} placeholder="Pseudo"/>
+            <PersonnalTextInput autoCompleteType="username" setText={setPseudo} text={pseudo} placeholder="Pseudo"/>
           </View>
 
           <View>
-            <Text> Donner un e-mail </Text>
-            <PersonnalTextInput setText={setEmail} text={email}  placeholder="E-mail"/>
+            <PersonnalTextInput  autoCompleteType="email" setText={setEmail} text={email}  placeholder="E-mail"/>
           </View>
 
           <View>
-            <Text> Donner un mot de passe </Text>
-            <PersonnalTextInput setText={setPassword} text={password} secureTextEntry={true} placeholder="Mot de passe"/>
+            <PersonnalTextInput autoCompleteType="password" setText={setPassword} text={password} secureTextEntry={true} placeholder="Mot de passe"/>
           </View>
 
           <PersonnalButton buttonStyle="small" text="Valider" onPress={validateAccountCreation}/>

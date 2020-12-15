@@ -43,8 +43,8 @@ function UserConnectionScreen ({ navigation }) {
           </View>
 
           <View style={styles.textinput_container}>
-            <PersonnalTextInput setText={setEmail} text={email} placeholder="Donner votre e-mail"/>
-            <PersonnalTextInput setText={setPassword} text={password} secureTextEntry={true} placeholder="Donner votre mot de passe"/>
+            <PersonnalTextInput autoCompleteType="email" setText={setEmail} text={email} placeholder="Donner votre e-mail"/>
+            <PersonnalTextInput autoCompleteType="password" setText={setPassword} text={password} secureTextEntry={true} placeholder="Donner votre mot de passe"/>
           </View>
 
           <View style={styles.buttons_container}>

@@ -1,5 +1,6 @@
+//Components/PersonalTextInput.js
 import React, { useState } from 'react'
-import {TextInput, StyleSheet} from 'react-native'
+import {TextInput, StyleSheet, View, Text} from 'react-native'
 
 
 import {stylesLib} from './../utils/Utils'
@@ -12,7 +13,11 @@ function CreationTextInput(props){
   const setText = props.setText;
 
   return(
-    <TextInput style={styles.text_input} {...props}  onChangeText={text => setText(text)}/>
+    <View>
+      <Text style={styles.TextInputDescription}>{props.placeholder}</Text>
+      <TextInput style={styles.text_input} {...props}  onChangeText={text => setText(text)}/>
+    </View>
+
   )
 }
 
@@ -30,5 +35,10 @@ const styles = StyleSheet.create({
     width: 250,
     borderRadius: 10,
     margin: 5
-  }
+  },
+  TextInputDescription: {
+    color: stylesLib.mainThemeColor,
+    fontSize: 12,
+    paddingLeft:15
+  },
 })

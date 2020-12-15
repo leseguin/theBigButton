@@ -6,6 +6,7 @@ import { AuthContext } from '../Navigation/Navigation'
 import firebase from './../utils/firebase'
 import {stylesLib} from './../utils/Utils'
 
+import * as RootNavigation from './../Navigation/RootNavigation'
 
 import PersonnalButton from './../Components/PersonnalButton'
 
@@ -14,7 +15,7 @@ import PersonnalButton from './../Components/PersonnalButton'
 
 
 
-export default function BigButtonScreen() {
+export default function BigButtonScreen({navigation}) {
 
 
   const user = useContext(AuthContext)
@@ -39,7 +40,7 @@ export default function BigButtonScreen() {
     return(
       <View style={styles.main_container} >
         <View style={styles.header}>
-            <PersonnalButton text='Déconnection' onPress={logOut} buttonSize="x_small" />
+            <PersonnalButton text='Options' onPress={() => navigation.navigate("OptionsScreen")} buttonSize="x_small" />
         </View>
         <View style={styles.central}>
           {getPseudo()}
@@ -58,7 +59,9 @@ const styles = StyleSheet.create({
   header:{
     flex: 2,
     justifyContent: 'flex-end',
-    alignItems:'flex-end'
+    alignItems:'flex-end',
+    paddingTop:1,
+    paddingRight: 5
   },
   header_button:{
     flexDirection: 'row',

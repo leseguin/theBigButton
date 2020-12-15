@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: stylesLib.mainThemeColor,
     marginTop: 10,
     marginBottom: 10,
-    width: 260,
+    width: 250,
     height: 45,
   },
   x_small_button : {
