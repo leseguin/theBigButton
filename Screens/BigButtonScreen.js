@@ -1,10 +1,12 @@
-//components/BigButton.js
+//Screens/BigButton.js
+
 
 import React, {useContext} from 'react'
 import {Button, Text, View, Alert, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native'
 import { AuthContext } from '../Navigation/Navigation'
 import firebase from './../utils/firebase'
 import {stylesLib} from './../utils/Utils'
+import {GetAllUsersUid, GetUserUidWithPseudo} from './../utils/DatabaseManager'
 
 import * as RootNavigation from './../Navigation/RootNavigation'
 
@@ -17,24 +19,12 @@ import PersonnalButton from './../Components/PersonnalButton'
 
 export default function BigButtonScreen({navigation}) {
 
-
   const user = useContext(AuthContext)
 
-
-  const getPseudo = () => {
-    const currentUser = firebase.auth().currentUser;
-    return <Text>hello</Text>
-  }
-
-  async function logOut() {
-    try {
-      await firebase.auth().signOut()
-    } catch (e) {
-      console.error(e)
-    }
-  }
   function onButtonPressed(){
     Alert.alert('Button pressed')
+    //GetAllUsersUid()
+    GetUserUidWithPseudo("pseudo1")
   }
 
     return(
@@ -43,10 +33,7 @@ export default function BigButtonScreen({navigation}) {
             <PersonnalButton text='Options' onPress={() => navigation.navigate("OptionsScreen")} buttonSize="x_small" />
         </View>
         <View style={styles.central}>
-          {getPseudo()}
           <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="large" />
-          <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="medium" />
-          <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="small" />
         </View>
       </View>
     )

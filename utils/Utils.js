@@ -1,4 +1,4 @@
-//import * as firebase from 'firebase';
+//utils/Utils.js
 
 
 import firebase from './firebase'

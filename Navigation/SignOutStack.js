@@ -1,4 +1,4 @@
-
+// Navigation/SignOutStack.js
 
 import React, { useState, useEffect, createContext } from 'react'
 import { NavigationContainer } from '@react-navigation/native';

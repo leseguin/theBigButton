@@ -1,4 +1,4 @@
-//components/BigButton.js
+//Screens/BigButton.js
 
 import React from 'react'
 import {Button, Text, View, Alert, StyleSheet } from 'react-native'

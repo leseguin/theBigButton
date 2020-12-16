@@ -8,7 +8,6 @@ import {stylesLib} from './../utils/Utils'
 //Hook d'état
 //<TextInput style={styles.text_input} {...props}  onChangeText={text => setText(text)}/>
 function CreationTextInput(props){
-  //const [text, setText] = useState('');
   const text = props.text;
   const setText = props.setText;
 
@@ -17,7 +16,6 @@ function CreationTextInput(props){
       <Text style={styles.TextInputDescription}>{props.placeholder}</Text>
       <TextInput style={styles.text_input} {...props}  onChangeText={text => setText(text)}/>
     </View>
-
   )
 }
 

@@ -1,4 +1,5 @@
-// Say this is /utils/auth.js
+///utils/auth.js
+
 import firebase from './firebase'
 import {Alert} from 'react-native'
 
@@ -7,6 +8,20 @@ import * as Facebook from 'expo-facebook';
 import {firestoreDB} from './Utils'
 //import firebase from './../utils/firebase'
 
+// TODO: Add verifications
+export const addUserUid = (pseudo, userUid) => {
+  const userUids = {
+      uid: userUid,
+      pseudo: pseudo
+  }
+  firestoreDB.collection("usersUid")
+  .doc("eeTIbqcjDB0SB4fVaXe2")
+  .update({
+    uid: firebase.firestore.FieldValue.arrayUnion(userUids)
+  })
+}
+
+// TODO: Cut in different smallers function
 export async function SignInWithFacebook() {
 
    const appId = Expo.Constants.manifest.extra.facebook.appId;
@@ -35,9 +50,12 @@ export async function SignInWithFacebook() {
          firestoreDB.collection("users")
            .doc(currentUser.uid)
            .set({
-             email: currentUser.email,
+             private:{
+               email: currentUser.email
+             },
              pseudo: pseudo,
-           });
+          });
+          addUserUid(pseudo, currentUser.uid)
 
          return Promise.resolve({type: 'success'});
        }
@@ -46,6 +64,7 @@ export async function SignInWithFacebook() {
        }
    }
 }
+
 
 export const SignInWithEmailAndPassword = async (email, password) => {
   console.log("SignInWithEmailAndPassword EMAIL :" + email)
@@ -64,7 +83,6 @@ export const SignInWithEmailAndPassword = async (email, password) => {
 }
 
 
-
 export const CreateUserWithEmailAndPassword = async (email, password, pseudo) => {
   console.log("CreateUserWithEmailAndPassword EMAIL :" + email)
   console.log("CreateUserWithEmailAndPassword PASSWORD :" + password)
@@ -74,10 +92,13 @@ export const CreateUserWithEmailAndPassword = async (email, password, pseudo) =>
       firestoreDB.collection("users")
         .doc(currentUser.uid)
         .set({
-          email: currentUser.email,
-          pseudo: pseudo,
+          private:{
+            email: currentUser.email
+          },
+          pseudo: pseudo
         });
+        addUserUid(pseudo, currentUser.uid)
     } catch (err) {
-      Alert.alert("There is something wrong!!!!", err.message);
+      Alert.alert("There is something wrong", err.message);
     }
 }

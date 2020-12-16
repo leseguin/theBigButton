@@ -1,4 +1,4 @@
-//Screen/OptionsScreen.js
+//Screens/OptionsScreen.js
 
 import React, {useContext, useState, useEffect} from 'react'
 import {Button, Text, View, Alert, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native'
@@ -16,28 +16,9 @@ export default function OptionsScreen() {
 
   const [pseudo, setPseudo] = useState()
 
-  async function logOut() {
-    try {
-      await firebase.auth().signOut()
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  //Ajouter verification des champs
-  //Verifier sur pseudo existe dans la BD
-  function applyChanges(){
-    if(pseudo.lenght >= 4){
-      updatePseudoOfCurrentUser()
-    } else {
-      Alert.alert("Pseudo trop court (inferieurs a 4 caractères)")
-    }
-  }
-
-  useEffect(() => {
-    getPseudoOfCurrentUser()
-  }, []);
-
+  /**
+   * Send when function "applyChanges" send
+   */
   function updatePseudoOfCurrentUser(){
     const currentUser = firebase.auth().currentUser;
     var userRef = firestoreDB.collection("users").doc(currentUser.uid);
@@ -56,15 +37,20 @@ export default function OptionsScreen() {
     });
   }
 
+  /**
+   * Launch when component did Mount (useEffect function)
+   Get the pseudo from the Database
+   Set the pseudo
+   */
   function getPseudoOfCurrentUser(){
     const currentUser = firebase.auth().currentUser;
     var userRef = firestoreDB.collection("users").doc(currentUser.uid);
     userRef.get().then(function(doc) {
         if (doc.exists) {
             const datadoc = doc.data()
-            console.log("Document data:", datadoc.pseudo);
+            //console.log("Document data:", datadoc.pseudo);
             setPseudo(datadoc.pseudo)
-            console.log("PSEUDO = " + pseudo)
+            //console.log("PSEUDO = " + pseudo)
         } else {
             console.log("No such document!");
             return "Pseudo Introuvable"
@@ -73,6 +59,32 @@ export default function OptionsScreen() {
         console.log("Error getting document:", error);
     });
   }
+
+  /**
+   * Call when user clicked on "Deconnection" button
+      User is disconnected
+   */
+  async function logOut() {
+    try {
+      await firebase.auth().signOut()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  //Ajouter verification des champs
+  //Verifier sur pseudo existe dans la BD
+  function applyChanges(){
+      updatePseudoOfCurrentUser()
+  }
+
+  /**
+   * Call when OptionsScreen Mount
+    call getPseudoOfCurrentUser
+   */
+  useEffect(() => {
+    getPseudoOfCurrentUser()
+  }, []);
 
     return(
       <View style={styles.main_container} >
