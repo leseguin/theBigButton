@@ -16,6 +16,7 @@ export const firebaseConfig = {
 
 export const firestoreDB = firebase.firestore();
 
+
 export const stylesLib = {
   mainThemeColor: '#50C9CF',
   mainTextColor: '#ffe2ff'

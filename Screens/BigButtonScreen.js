@@ -1,7 +1,7 @@
 //Screens/BigButton.js
 
 
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {Button, Text, View, Alert, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native'
 import { AuthContext } from '../Navigation/Navigation'
 import firebase from './../utils/firebase'
@@ -17,15 +17,19 @@ import PersonnalButton from './../Components/PersonnalButton'
 
 
 
-export default function BigButtonScreen({navigation}) {
-
+export default function onButtonPressed({navigation}) {
   const user = useContext(AuthContext)
 
-  function onButtonPressed(){
-    Alert.alert('Button pressed')
-    //GetAllUsersUid()
-    GetUserUidWithPseudo("pseudo1")
+  async function onButtonPressed(){
+      //getUsers()
+
+      const users = await GetAllUsersUid()
+      users.forEach((item, i) => {
+        console.log("item : " + item.uid);
+      });
+
   }
+
 
     return(
       <View style={styles.main_container} >

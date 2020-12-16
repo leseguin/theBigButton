@@ -23,14 +23,11 @@ export const addUserUid = (pseudo, userUid) => {
 
 // TODO: Cut in different smallers function
 export async function SignInWithFacebook() {
-
    const appId = Expo.Constants.manifest.extra.facebook.appId;
    const permissions = ['public_profile', 'email'];  // Permissions required, consult Facebook docs
-
    await Facebook.initializeAsync({
         appId: appId,
       });
-
    const {
      type,
      token,
@@ -39,11 +36,9 @@ export async function SignInWithFacebook() {
      );
      switch (type) {
        case 'success': {
-         await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);  // Set persistent auth state
+         await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
          const credential = firebase.auth.FacebookAuthProvider.credential(token);
-         const facebookProfileData = await firebase.auth().signInWithCredential(credential);  // Sign in with Facebook credential
-         // Do something with Facebook profile data
-         // OR you have subscribed to auth state change, authStateChange handler will process the profile data
+         const facebookProfileData = await firebase.auth().signInWithCredential(credential);
          const profile = facebookProfileData.additionalUserInfo.profile
          const pseudo = profile.first_name + profile.last_name
          const currentUser = firebase.auth().currentUser;
