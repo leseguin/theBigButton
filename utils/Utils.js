@@ -3,7 +3,6 @@
 
 import firebase from './firebase'
 
-
 export const firebaseConfig = {
     apiKey: "AIzaSyBdTcaFPZOizwT72_QaHDmMhcCj3zsVEJc",
     authDomain: "thebigbutton-68c7f.firebaseapp.com",
@@ -16,11 +15,16 @@ export const firebaseConfig = {
 
 export const firestoreDB = firebase.firestore();
 
-
 export const stylesLib = {
   mainThemeColor: '#50C9CF',
-  mainTextColor: '#ffe2ff'
+  mainTextColor: '#F8FFFF',
+  redColor: '#a90c0c',
+  greyColor: '#BFBFBF',
+  lightGreyColor:'#D9E1E1',
+  whiteColor:'#FFFFFF'
 }
+
+
 
 //firebase.initializeApp(Expo.Constants.manifest.extra.firebase);
 

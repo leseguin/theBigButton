@@ -7,6 +7,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { navigationRef } from './RootNavigation'
 
+import {checkForMessages} from './../utils/MessagesManager'
+
 
 import firebase from './../utils/firebase'
 
@@ -17,7 +19,6 @@ import SplashScreen from '../Screens/SplashScreen'
 const Stack = createStackNavigator();
 
  //initialRouteName="UserConnection">
- //
 export const AuthContext = createContext(null)
 
 
@@ -29,6 +30,7 @@ function Navigation () {
   // Handle user state changes
   function onAuthStateChanged(result) {
     setUser(result)
+    checkForMessages()
     if (initializing) setInitializing(false)
   }
 

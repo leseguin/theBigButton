@@ -37,7 +37,6 @@ export const GetUserUidWithPseudo = async (pseudo) => {
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
-
   return userUid
 }
 

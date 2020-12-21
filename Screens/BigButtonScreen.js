@@ -7,10 +7,12 @@ import { AuthContext } from '../Navigation/Navigation'
 import firebase from './../utils/firebase'
 import {stylesLib} from './../utils/Utils'
 import {GetAllUsersUid, GetUserUidWithPseudo} from './../utils/DatabaseManager'
+import {sendMessageTo} from './../utils/MessagesManager'
 
 import * as RootNavigation from './../Navigation/RootNavigation'
 
 import PersonnalButton from './../Components/PersonnalButton'
+import PersonalTextInput from './../Components/PersonalTextInput'
 
 //import Button from 'react-native-button'
 
@@ -19,15 +21,12 @@ import PersonnalButton from './../Components/PersonnalButton'
 
 export default function onButtonPressed({navigation}) {
   const user = useContext(AuthContext)
+    const [message, setMessage] = useState()
 
+  // TODO: Verifier si le message n'est pas vide
   async function onButtonPressed(){
-      //getUsers()
 
-      const users = await GetAllUsersUid()
-      users.forEach((item, i) => {
-        console.log("item : " + item.uid);
-      });
-
+      sendMessageTo(message, "qQHrtsjSzEgEIkILJyMP2MXq8bV2")
   }
 
 
@@ -37,6 +36,7 @@ export default function onButtonPressed({navigation}) {
             <PersonnalButton text='Options' onPress={() => navigation.navigate("OptionsScreen")} buttonSize="x_small" />
         </View>
         <View style={styles.central}>
+          <PersonalTextInput placeholder="message à envoyer" setText={setMessage} text={message}/>
           <PersonnalButton text='Envoyer' onPress={onButtonPressed} buttonSize="large" />
         </View>
       </View>

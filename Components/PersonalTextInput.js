@@ -12,7 +12,7 @@ function CreationTextInput(props){
   const setText = props.setText;
 
   return(
-    <View>
+    <View >
       <Text style={styles.TextInputDescription}>{props.placeholder}</Text>
       <TextInput style={styles.text_input} {...props}  onChangeText={text => setText(text)}/>
     </View>
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     width: 250,
     borderRadius: 10,
-    margin: 5
+    margin: 5,
+    backgroundColor: stylesLib.whiteColor
   },
   TextInputDescription: {
     color: stylesLib.mainThemeColor,

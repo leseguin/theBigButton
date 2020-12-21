@@ -1,19 +1,17 @@
 //Screens/BigButton.js
 
 import React from 'react'
-import {Button, Text, View, Alert, StyleSheet } from 'react-native'
+import {Button, Text, View, Alert, StyleSheet, ActivityIndicator } from 'react-native'
+import {stylesLib} from './../utils/Utils'
 //import Button from 'react-native-button'
 
 export default class BigButton extends React.Component {
 
-
-
   render(){
     return(
       <View style={styles.main_container} >
-        <View style={styles.central}>
-          <Text> une Super appli </Text>
-        </View>
+          <Text style={styles.text}>Tire mon doigt</Text>
+          <ActivityIndicator size="large" color={stylesLib.mainThemeColor}  />
       </View>
     )
   }
@@ -22,22 +20,16 @@ export default class BigButton extends React.Component {
 const styles = StyleSheet.create({
   main_container:{
     flex:1,
-  },
-  button:{
-    height:50,
-    width:50
-  },
-  header:{
-    flex: 2,
-    justifyContent: 'flex-end',
-    alignItems:'flex-end'
-  },
-  header_button:{
-    fontSize: 50
-  },
-  central:{
     justifyContent: 'center',
     alignItems:'center'
+  },
+  text:{
+    color: stylesLib.mainThemeColor,
+    fontSize: 30,
+    textTransform:'uppercase',
+    fontWeight:'bold',
+    textAlign: 'center',
+    paddingBottom : 50
   }
 
 })

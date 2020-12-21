@@ -10,6 +10,8 @@ import PersonalTextInput from './../Components/PersonalTextInput'
 import {firestoreDB} from './../utils/Utils'
 import firebase from './../utils/firebase'
 
+import Separator from './../Components/Separator'
+
 //import Button from 'react-native-button'
 
 export default function OptionsScreen() {
@@ -88,15 +90,15 @@ export default function OptionsScreen() {
 
     return(
       <View style={styles.main_container} >
-        <View style={styles.central}>
           <View style={styles.central_form}>
             <PersonalTextInput value={pseudo} placeholder="pseudo" setText={setPseudo} text={pseudo}/>
             <PersonnalButton text='Valider les changements' onPress={applyChanges} buttonSize="small" />
           </View>
+          <Separator/>
+          <View style={styles.deconnexion_button}>
+            <PersonnalButton text='Déconnection' onPress={logOut} buttonSize="x_small" />
+          </View>
 
-          <PersonnalButton text='Déconnection' onPress={logOut} buttonSize="x_small" />
-
-        </View>
 
       </View>
     )
@@ -106,32 +108,16 @@ const styles = StyleSheet.create({
   main_container:{
     flex:1,
   },
-  header:{
-    flex: 2,
-    justifyContent: 'flex-end',
-    alignItems:'flex-end'
-  },
-  header_button:{
-    flexDirection: 'row',
-     borderRadius: 30,
-     padding: 5,
-     marginRight:5,
-     justifyContent: 'center',
-     alignItems: 'center',
-     backgroundColor: stylesLib.mainThemeColor
-  },
-  central:{
-    flex:30,
-    justifyContent: 'center',
-    alignItems:'center'
-  },
-  TextInputDescription: {
-    color: stylesLib.mainThemeColor,
-    fontSize: 12
-  },
   central_form:{
+    flex: 7,
     justifyContent: 'center',
     alignItems:'center'
+  },
+  deconnexion_button:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems:'center',
+    backgroundColor: stylesLib.whiteColor
   }
 
 })
