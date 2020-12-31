@@ -28,16 +28,15 @@ export const checkForMessages = () => {
     .onSnapshot(function(doc) {
         if (doc.exists) {
               doc.data().messages.forEach((item, i) => {
-                  console.log("----------------------------");
+                  console.log("-------------" + i + "---------------");
                   console.log("----Sender : " + item.sender);
                   console.log("----Message : " + item.message);
                   console.log("----Date : " + item.date);
               });
-        
-
 
         } else {
             console.log("No such document!");
         }
       });
+      
 }

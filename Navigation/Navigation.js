@@ -27,10 +27,8 @@ function Navigation () {
   const [initializing, setInitializing] = useState(true)
   var [user, setUser] = useState(null)
 
-  // Handle user state changes
   function onAuthStateChanged(result) {
     setUser(result)
-    checkForMessages()
     if (initializing) setInitializing(false)
   }
 
@@ -42,27 +40,16 @@ function Navigation () {
   }, [])
 
 
+  if (!initializing) {
+    checkForMessages();
+    console.log("je checke pour messages");
+  }
 
-
-
-
-//   useEffect(() => {
-//    var firebaseUSer = firebase.auth().currentUser
-//    console.log("Navigation UseEffect : " + firebaseUSer)
-//    setUser(firebaseUSer)
-//  });
-
-
-
-  //console.log("Navigation : " + user)
 
   if (initializing) {
     // We haven't finished checking for the token yet
     return <SplashScreen/>;
-  }
-
-
-
+  } 
 
   return user ? (
     <AuthContext.Provider value={user}>

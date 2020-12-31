@@ -8,6 +8,8 @@ import * as Facebook from 'expo-facebook';
 import {firestoreDB} from './Utils'
 //import firebase from './../utils/firebase'
 
+// Ajouter les erreurs
+
 // TODO: Add verifications
 export const addUserUid = (pseudo, userUid) => {
   const userUids = {

@@ -18,18 +18,19 @@ import PersonalTextInput from './../Components/PersonalTextInput'
 
 
 
-
+/**
+ * 
+ * @param {*} param0 
+ * @todo Pourquoi onButtonPressed ? et pas "BigButtonScreen"
+ */
 export default function onButtonPressed({navigation}) {
   const user = useContext(AuthContext)
     const [message, setMessage] = useState()
 
   // TODO: Verifier si le message n'est pas vide
-  async function onButtonPressed(){
-
-      sendMessageTo(message, "qQHrtsjSzEgEIkILJyMP2MXq8bV2")
-  }
-
-
+    async function onButtonPressed(){
+        sendMessageTo(message, "qQHrtsjSzEgEIkILJyMP2MXq8bV2")
+    }
     return(
       <View style={styles.main_container} >
         <View style={styles.header}>

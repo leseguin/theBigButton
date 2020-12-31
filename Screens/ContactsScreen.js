@@ -1,13 +1,16 @@
 //Screens/ContactsScreen.js
 
-import React from 'react'
-import {View, Text, StyleSheet, Alert, FlatList} from 'react-native'
+import React, {useState} from 'react'
+import {View, Text, StyleSheet, Alert, FlatList, Modal} from 'react-native'
 
 import ContactScreenItem from './../Components/ContactScreenItem'
 import PersonnalButton from './../Components/PersonnalButton'
 import Separator from './../Components/Separator'
 
 import {stylesLib} from './../utils/Utils'
+import GetUserUidWithPseudo from './../utils/DatabaseManager'
+import ModalAddContact from './../Components/ModalAddContact'
+
 
 export default function ContactsScreen(props) {
 
@@ -15,6 +18,8 @@ export default function ContactsScreen(props) {
   function onPress(){
     Alert.alert("Je suis touché")
   }
+
+
 
 
 
@@ -38,10 +43,22 @@ export default function ContactsScreen(props) {
 
   }
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function addContact(){
+      setModalVisible(true)
+  }
+
+
+
+
   //Une liste de contact DONE
   //Bouton d'ajout de contact en bas ?
   return (
     <View style={styles.main_container}>
+
+      <ModalAddContact closeModal={() => {setModalVisible(!modalVisible)}} modalVisible={modalVisible} />
+
       <FlatList
         data={items}
         keyExtractor={(item) => item.id.toString()}
@@ -49,7 +66,7 @@ export default function ContactsScreen(props) {
       />
       <Separator/>
       <View style={styles.buttons_container}>
-        <PersonnalButton buttonSize="small" text="Ajouter un contact" />
+        <PersonnalButton buttonSize="small" text="Ajouter un contact"  onPress={addContact}/>
       </View>
     </View>
   )
